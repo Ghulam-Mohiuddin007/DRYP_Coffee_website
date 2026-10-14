@@ -1,0 +1,677 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>DRYP | Coffee & Craft — Modern Bites & Slow Brews (Sahiwal)</title>
+  <meta name="description" content="Welcome to DRYP | Coffee & Craft in Farid Town, Sahiwal. Experience 3D specialty coffee, artisanal slow brews, signature caramel iced lattes, and late-night ambiance. Rated 4.8 stars on Google Maps.">
+  <meta name="keywords" content="DRYP coffee, DRYP Coffee & Craft, Sahiwal coffee shop, specialty coffee, slow brew, caramel iced latte, Farid Town Sahiwal, Google reviews">
+  
+  <!-- Open Graph -->
+  <meta property="og:title" content="DRYP | Coffee & Craft — 3D Coffee Experience">
+  <meta property="og:description" content="Modern bites & slow brews in Farid Town, Sahiwal. Explore our 3D interactive coffee lab and real artisan menu.">
+  <meta property="og:type" content="website">
+  <meta property="og:image" content="assets/images/caramel_iced_latte.jpg">
+  
+  <!-- Stylesheets & Fonts -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <!-- Ambient Background Lighting & Grid -->
+  <div class="ambient-glow-1"></div>
+  <div class="ambient-glow-2"></div>
+  <div class="bg-grid-overlay"></div>
+
+  <!-- Three.js 3D WebGL Canvas Layer -->
+  <div id="webgl-canvas-container" title="Click & Drag to rotate 3D coffee cup">
+    <canvas id="three-canvas"></canvas>
+  </div>
+
+  <!-- Main Website Content -->
+  <div class="content-wrapper">
+
+    <!-- Navigation Header -->
+    <header class="site-nav">
+      <div class="nav-inner">
+        <a href="#hero" class="brand-logo" id="nav-brand-logo">
+          <div class="brand-drip-icon">
+            <i class="fa-solid fa-droplet"></i>
+          </div>
+          <div>
+            <div class="brand-name">DRYP</div>
+            <div class="brand-tagline">Coffee & Craft</div>
+          </div>
+        </a>
+
+        <ul class="nav-links">
+          <li><a href="#craft" class="nav-link">The Craft</a></li>
+          <li><a href="#menu" class="nav-link">Menu</a></li>
+          <li><a href="#studio" class="nav-link">3D Studio</a></li>
+          <li><a href="#atmosphere" class="nav-link">Ambiance</a></li>
+          <li><a href="#reviews" class="nav-link">Reviews <span style="color: #fbbc04;">★ 4.8</span></a></li>
+          <li><a href="#visit" class="nav-link">Visit Us</a></li>
+        </ul>
+
+        <div class="nav-actions">
+          <!-- Real Operating Hours Live Pill -->
+          <div class="status-pill" id="nav-status-pill">
+            <span class="status-dot"></span>
+            <span id="status-pill-text">Now Open • Closes 1:30 AM</span>
+          </div>
+
+          <!-- Ambient Sound Toggle -->
+          <button class="btn-sound-toggle" id="sound-toggle-btn" title="Toggle Cafe Ambient Audio">
+            <i class="fa-solid fa-volume-high"></i>
+          </button>
+
+          <!-- Order Bag Trigger -->
+          <button class="btn-secondary" id="open-bag-btn" style="padding: 0.6rem 1.1rem;">
+            <i class="fa-solid fa-bag-shopping"></i>
+            <span>Bag</span>
+            <span id="bag-badge-count" style="background: var(--primary); color: #0c0907; padding: 0.1rem 0.5rem; border-radius: 999px; font-size: 0.75rem; font-weight: 800;">0</span>
+          </button>
+
+          <!-- Mobile Hamburger -->
+          <button class="mobile-menu-btn" id="mobile-menu-btn">
+            <i class="fa-solid fa-bars"></i>
+          </button>
+        </div>
+      </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero-section" id="hero">
+      <div class="container">
+        <div class="hero-grid">
+          
+          <div class="hero-content">
+            <div class="hero-badge-wrap">
+              <span class="badge-pill">
+                <i class="fa-solid fa-fire-flame-curved"></i> Sahiwal's 1st Specialty Craft House
+              </span>
+              <a href="https://maps.app.goo.gl/Dghv7V84S7rzrEKz5" target="_blank" class="badge-pill badge-google" style="text-decoration: none;">
+                <i class="fa-brands fa-google"></i> 4.8 ★ (193+ Google Reviews)
+              </a>
+            </div>
+
+            <h1 class="hero-title">
+              SLOW BREWS. <br>
+              <span class="gradient-text title-accent">MODERN BITES.</span>
+            </h1>
+
+            <p class="hero-desc">
+              A little corner in Farid Town made for coffee, conversations & cozy moments. Experience slow drop-by-drop cold extractions, hand-poured V60 single origins, and signature caramel iced lattes crafted to perfection.
+            </p>
+
+            <div class="hero-actions">
+              <a href="#menu" class="btn-primary" id="hero-cta-menu">
+                <i class="fa-solid fa-mug-hot"></i> Explore Craft Menu
+              </a>
+              <a href="#studio" class="btn-secondary" id="hero-cta-studio">
+                <i class="fa-solid fa-cube"></i> Interactive 3D Lab
+              </a>
+              <button class="btn-secondary btn-open-review-modal" id="hero-cta-review" style="border-color: rgba(251, 188, 4, 0.4); color: #fbbc04;">
+                <i class="fa-solid fa-star"></i> Write Google Review
+              </button>
+            </div>
+
+            <div class="hero-meta-strip">
+              <div class="meta-item">
+                <div class="meta-number">4.8 <i class="fa-solid fa-star" style="font-size: 1.1rem; color: #fbbc04;"></i></div>
+                <div class="meta-label">Google Rating</div>
+              </div>
+              <div class="meta-item">
+                <div class="meta-number">193+</div>
+                <div class="meta-label">Verified Reviews</div>
+              </div>
+              <div class="meta-item">
+                <div class="meta-number">1:30 AM</div>
+                <div class="meta-label">Late Night Hangout</div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Hero 3D Interactive Anchor & Hint -->
+          <div class="hero-3d-anchor">
+            <div class="canvas-hint-card" id="hero-3d-hint">
+              <div class="canvas-hint-icon">
+                <i class="fa-solid fa-arrows-spin"></i>
+              </div>
+              <div class="canvas-hint-text">
+                <h5>Interactive 3D Brew</h5>
+                <p>Scroll down or drag cup to inspect</p>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- Marquee Ticker -->
+    <div class="marquee-bar">
+      <div class="marquee-track">
+        <div class="marquee-item"><span class="dot"></span> <strong>DRYP | Coffee & Craft</strong></div>
+        <div class="marquee-item"><span class="dot"></span> 918 B Main Farid Town Sahiwal</div>
+        <div class="marquee-item"><span class="dot"></span> <strong>4.8 ★ Google Maps Rated</strong></div>
+        <div class="marquee-item"><span class="dot"></span> 18-Hour Slow Cold Drip</div>
+        <div class="marquee-item"><span class="dot"></span> <strong>Signature Caramel Iced Latte</strong></div>
+        <div class="marquee-item"><span class="dot"></span> Open Daily 2:00 PM – 1:30 AM</div>
+        <div class="marquee-item"><span class="dot"></span> <strong>Belgian Chocolate Fudge Brownies</strong></div>
+        <div class="marquee-item"><span class="dot"></span> Artisanal V60 Single Origin Pour Over</div>
+        <div class="marquee-item"><span class="dot"></span> <strong>@dryp.cc on Instagram</strong></div>
+        <!-- Loop copy -->
+        <div class="marquee-item"><span class="dot"></span> <strong>DRYP | Coffee & Craft</strong></div>
+        <div class="marquee-item"><span class="dot"></span> 918 B Main Farid Town Sahiwal</div>
+        <div class="marquee-item"><span class="dot"></span> <strong>4.8 ★ Google Maps Rated</strong></div>
+        <div class="marquee-item"><span class="dot"></span> 18-Hour Slow Cold Drip</div>
+        <div class="marquee-item"><span class="dot"></span> <strong>Signature Caramel Iced Latte</strong></div>
+      </div>
+    </div>
+
+    <!-- The Craft & Philosophy Section -->
+    <section class="section" id="craft">
+      <div class="container">
+        <div class="section-head">
+          <span class="section-subtitle">THE ARTISAN RITUAL</span>
+          <h2 class="section-title">Where Patience Meets <br><span class="gradient-text">Uncompromised Extraction</span></h2>
+          <p class="section-desc">
+            At DRYP, we believe coffee is not a commodity rushed in seconds. It is a slow, methodical craft honoring origin terroir, precise water chemistry, and nuanced roasting profiles.
+          </p>
+        </div>
+
+        <div class="craft-grid">
+          <div class="craft-visual">
+            <img src="assets/images/v60_pourover.jpg" alt="V60 Pour Over Slow Brew Process at DRYP Coffee" loading="lazy">
+            <div class="craft-visual-badge">
+              <h4>The 4-Minute Bloom</h4>
+              <p>Hand-poured at exactly 93.5°C using gooseneck kettles to release volatile aromas and floral jasmine notes.</p>
+            </div>
+          </div>
+
+          <div class="craft-cards">
+            <div class="craft-card">
+              <div class="craft-card-icon">
+                <i class="fa-solid fa-hourglass-half"></i>
+              </div>
+              <h3>Slow Drip & Cold Extractions</h3>
+              <p>Our signature 18-Hour Kyoto cold drip slowly captures chocolate and hazelnut undertones with near-zero bitterness and silky mouthfeel.</p>
+            </div>
+
+            <div class="craft-card">
+              <div class="craft-card-icon">
+                <i class="fa-solid fa-mug-hot"></i>
+              </div>
+              <h3>Precision Espresso Engineering</h3>
+              <p>Double shot ristrettos pulled through precision 20g baskets, textured with microfoam steamed milk for our acclaimed Flat Whites and Cortados.</p>
+            </div>
+
+            <div class="craft-card">
+              <div class="craft-card-icon">
+                <i class="fa-solid fa-cookie-bite"></i>
+              </div>
+              <h3>Crafted Bakery Pairings</h3>
+              <p>From warm Belgian fudge brownies with molten chocolate cores to artisanal Lotus Biscoff cheesecakes, every bite complements our slow brews.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Original Menu Section -->
+    <section class="section" id="menu">
+      <div class="container">
+        <div class="section-head">
+          <span class="section-subtitle">ORIGINAL SELECTIONS</span>
+          <h2 class="section-title">Modern Bites & <span class="gradient-text">Slow Brews</span></h2>
+          <p class="section-desc">
+            Handcrafted beverages and freshly baked artisan bites. Select any item to customize and add to your craft bag.
+          </p>
+        </div>
+
+        <!-- Menu Tabs -->
+        <div class="menu-controls">
+          <button class="menu-tab-btn active" data-category="all">All Selections</button>
+          <button class="menu-tab-btn" data-category="slow-brews">Slow Brews & Drips</button>
+          <button class="menu-tab-btn" data-category="espresso-lattes">Espresso & Lattes</button>
+          <button class="menu-tab-btn" data-category="refreshers">Matcha & Refreshers</button>
+          <button class="menu-tab-btn" data-category="bites-bakery">Modern Bites & Bakery</button>
+        </div>
+
+        <!-- Menu Grid -->
+        <div class="menu-grid" id="menu-grid">
+          <!-- Dynamically populated by app.js -->
+        </div>
+      </div>
+    </section>
+
+    <!-- 3D Studio & Brew Lab Section -->
+    <section class="section studio-section" id="studio">
+      <div class="container">
+        <div class="section-head">
+          <span class="section-subtitle">INTERACTIVE 3D LAB</span>
+          <h2 class="section-title">Customize Your <span class="gradient-text">3D Craft Brew</span></h2>
+          <p class="section-desc">
+            Rotate, inspect latte art microfoam, toggle steam physics, and experience our 3D vessels before stepping into the cafe.
+          </p>
+        </div>
+
+        <div class="studio-grid">
+          <!-- Interactive Studio Controls -->
+          <div class="studio-panel">
+            <h3 class="studio-panel-title">Brew Customizer Controls</h3>
+            <p class="studio-panel-desc">Modify cup models, latte art textures, and atmospheric physics in real-time.</p>
+
+            <!-- Vessel Type -->
+            <div class="studio-group">
+              <label class="studio-group-label">Select 3D Vessel</label>
+              <div class="studio-options">
+                <button class="btn-studio-option btn-cup-model active" data-cup="ceramic_latte">
+                  <i class="fa-solid fa-mug-saucer"></i> Obsidian Ceramic Cup
+                </button>
+                <button class="btn-studio-option btn-cup-model" data-cup="iced_ribbed">
+                  <i class="fa-solid fa-whiskey-glass"></i> Tall Iced Glass
+                </button>
+              </div>
+            </div>
+
+            <!-- Latte Art Pattern -->
+            <div class="studio-group">
+              <label class="studio-group-label">Latte Art Pattern</label>
+              <div class="studio-options">
+                <button class="btn-studio-option btn-latte-art active" data-art="rosetta">
+                  <i class="fa-solid fa-leaf"></i> Rosetta Leaf
+                </button>
+                <button class="btn-studio-option btn-latte-art" data-art="heart">
+                  <i class="fa-solid fa-heart"></i> Velvet Heart
+                </button>
+                <button class="btn-studio-option btn-latte-art" data-art="swan">
+                  <i class="fa-solid fa-feather"></i> Artisan Swan
+                </button>
+                <button class="btn-studio-option btn-latte-art" data-art="crema">
+                  <i class="fa-solid fa-circle-nodes"></i> Crema Swirl
+                </button>
+              </div>
+            </div>
+
+            <!-- Physics & Actions -->
+            <div class="studio-group">
+              <label class="studio-group-label">Effects & Camera</label>
+              <div class="studio-options">
+                <button class="btn-studio-option active" id="toggle-steam-btn">
+                  <i class="fa-solid fa-smog"></i> Steam Bloom
+                </button>
+                <button class="btn-studio-option" id="reset-3d-btn">
+                  <i class="fa-solid fa-camera-rotate"></i> Reset Camera
+                </button>
+                <button class="btn-studio-option" id="toggle-interact-3d">
+                  <i class="fa-solid fa-arrows-spin"></i> Enable Free 3D Drag
+                </button>
+              </div>
+            </div>
+          </div>
+
+          <!-- 3D Studio Live Canvas Target Card -->
+          <div class="studio-interactive-box">
+            <div class="studio-3d-callout">
+              <i class="fa-solid fa-cubes-stacked"></i> WebGL 3D Real-Time Render
+            </div>
+            <div style="text-align: center; color: var(--text-dim); padding: 2rem;">
+              <p style="font-size: 0.95rem; color: var(--primary-light); font-weight: 600; margin-bottom: 0.5rem;">
+                <i class="fa-solid fa-hand-pointer"></i> Rotate & Inspect Live
+              </p>
+              <p style="font-size: 0.8rem; max-width: 300px; margin: 0 auto;">
+                Use your mouse or touch gestures to freely orbit and view the cup from any perspective.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- The Atmosphere & Ambiance Showcase -->
+    <section class="section" id="atmosphere">
+      <div class="container">
+        <div class="atmosphere-banner">
+          <img src="assets/images/cafe_interior.jpg" alt="DRYP Coffee & Craft Cafe Interior Farid Town Sahiwal" loading="lazy">
+          <div class="atmosphere-overlay">
+            <div class="atmosphere-content">
+              <div class="badge-pill" style="margin-bottom: 1rem;">
+                <i class="fa-solid fa-moon"></i> Late-Night Sanctuary
+              </div>
+              <h3 class="atmosphere-quote">
+                "A little corner in Sahiwal made for coffee, conversations & cozy moments."
+              </h3>
+              <p style="color: var(--text-muted); margin-bottom: 1.5rem; font-size: 1rem;">
+                Polished concrete, warm timber slats, glowing amber neon typography, and acoustic playlists create the most inviting evening atmosphere in the city.
+              </p>
+              <div class="atmosphere-tags">
+                <span class="atmosphere-pill"><i class="fa-solid fa-wifi"></i> Ultra High-Speed WiFi</span>
+                <span class="atmosphere-pill"><i class="fa-solid fa-clock"></i> Open until 1:30 AM</span>
+                <span class="atmosphere-pill"><i class="fa-solid fa-couch"></i> Cozy Lounge Corners</span>
+                <span class="atmosphere-pill"><i class="fa-solid fa-music"></i> Curated Lo-Fi Beats</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Google Reviews & Live Upload Section -->
+    <section class="section reviews-section" id="reviews">
+      <div class="container">
+        
+        <div class="section-head">
+          <span class="section-subtitle">COMMUNITY VOICES</span>
+          <h2 class="section-title">Verified Google <span class="gradient-text">Patron Reviews</span></h2>
+          <p class="section-desc">
+            Read authentic reviews from guests who visited DRYP in Farid Town, Sahiwal. Share your own experience and publish directly to Google Maps!
+          </p>
+        </div>
+
+        <!-- Google Score Summary Banner -->
+        <div class="google-rating-banner">
+          <div class="google-rating-info">
+            <div class="google-score-box">
+              <span class="google-score-val">4.8</span>
+              <span class="google-score-max">/ 5.0</span>
+            </div>
+            <div class="google-stars-detail">
+              <div class="stars-row">
+                <i class="fa-solid fa-star"></i>
+                <i class="fa-solid fa-star"></i>
+                <i class="fa-solid fa-star"></i>
+                <i class="fa-solid fa-star"></i>
+                <i class="fa-solid fa-star"></i>
+              </div>
+              <div class="google-subtext">Based on 193 verified reviews on Google Maps</div>
+              <a href="https://maps.app.goo.gl/Dghv7V84S7rzrEKz5" target="_blank" class="google-badge-link">
+                <i class="fa-brands fa-google"></i> View Official Google Maps Place Page <i class="fa-solid fa-arrow-up-right-from-square"></i>
+              </a>
+            </div>
+          </div>
+
+          <div class="google-rating-cta">
+            <button class="btn-primary btn-open-review-modal" id="btn-write-review-main">
+              <i class="fa-solid fa-pen-to-square"></i> Write a Google Review
+            </button>
+          </div>
+        </div>
+
+        <!-- Filter Bar -->
+        <div class="reviews-filter-bar">
+          <div class="review-filter-tabs">
+            <button class="review-tab-btn active" data-filter="all">All Reviews</button>
+            <button class="review-tab-btn" data-filter="5">5-Star Favorites</button>
+            <button class="review-tab-btn" data-filter="4">4-Star Reviews</button>
+          </div>
+          <span style="font-size: 0.85rem; color: var(--text-dim);">
+            <i class="fa-solid fa-shield-halved" style="color: #4ade80;"></i> Google Verified Location
+          </span>
+        </div>
+
+        <!-- Reviews Cards Grid -->
+        <div class="reviews-grid" id="reviews-grid">
+          <!-- Populated by app.js -->
+        </div>
+
+      </div>
+    </section>
+
+    <!-- Visit, Location & Hours Section -->
+    <section class="section visit-section" id="visit">
+      <div class="container">
+        <div class="section-head">
+          <span class="section-subtitle">FIND US IN FARID TOWN</span>
+          <h2 class="section-title">Drop by <span class="gradient-text">DRYP | Coffee & Craft</span></h2>
+          <p class="section-desc">
+            Conveniently situated on Farid Town Road near the Sui Gas Office in Sahiwal.
+          </p>
+        </div>
+
+        <div class="visit-grid">
+          <div class="visit-details">
+            <div class="visit-info-card">
+              <div class="visit-info-icon">
+                <i class="fa-solid fa-location-dot"></i>
+              </div>
+              <div class="visit-info-text">
+                <h4>Address & Landmark</h4>
+                <p>918 B Main, Farid Town Road, near Sui Gas Office, Sahiwal, Punjab, Pakistan.</p>
+              </div>
+            </div>
+
+            <div class="visit-info-card">
+              <div class="visit-info-icon">
+                <i class="fa-solid fa-clock"></i>
+              </div>
+              <div class="visit-info-text">
+                <h4>Operating Hours</h4>
+                <p><strong>Monday – Sunday:</strong> 2:00 PM – 1:30 AM (Open daily for afternoon brews and late-night cravings).</p>
+              </div>
+            </div>
+
+            <div class="visit-info-card">
+              <div class="visit-info-icon">
+                <i class="fa-solid fa-phone"></i>
+              </div>
+              <div class="visit-info-text">
+                <h4>Direct Phone & Reservations</h4>
+                <p><a href="tel:+923108444226" style="color: var(--primary-light); text-decoration: none; font-weight: 700;">+92 310 8444226</a></p>
+              </div>
+            </div>
+
+            <div class="visit-info-card">
+              <div class="visit-info-icon">
+                <i class="fa-brands fa-instagram"></i>
+              </div>
+              <div class="visit-info-text">
+                <h4>Follow Our Story</h4>
+                <p><a href="https://instagram.com/dryp.cc" target="_blank" style="color: var(--primary-light); text-decoration: none; font-weight: 700;">@dryp.cc</a> on Instagram</p>
+              </div>
+            </div>
+
+            <div style="display: flex; gap: 1rem; flex-wrap: wrap;">
+              <a href="https://maps.app.goo.gl/Dghv7V84S7rzrEKz5" target="_blank" class="btn-primary">
+                <i class="fa-solid fa-diamond-turn-right"></i> Navigate via Google Maps
+              </a>
+              <button class="btn-secondary btn-open-review-modal">
+                <i class="fa-solid fa-star"></i> Leave Google Review
+              </button>
+            </div>
+          </div>
+
+          <!-- Interactive Google Map Frame -->
+          <div class="visit-map-container">
+            <iframe 
+              src="https://maps.google.com/maps?q=30.678598,73.0887661&hl=en&z=16&output=embed"
+              allowfullscreen="" 
+              loading="lazy" 
+              referrerpolicy="no-referrer-when-downgrade">
+            </iframe>
+            <div class="map-floating-badge">
+              <h5>DRYP | Coffee & Craft</h5>
+              <p>📍 Farid Town, Sahiwal (4.8 ★)</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="site-footer">
+      <div class="container">
+        <div class="footer-grid">
+          <div class="footer-brand">
+            <div class="brand-logo">
+              <div class="brand-drip-icon">
+                <i class="fa-solid fa-droplet"></i>
+              </div>
+              <div>
+                <div class="brand-name">DRYP</div>
+                <div class="brand-tagline">Coffee & Craft</div>
+              </div>
+            </div>
+            <p>
+              Sahiwal's premier specialty coffee destination. Serving modern bites, artisan slow brews, and late night memories.
+            </p>
+            <div class="footer-social-links">
+              <a href="https://instagram.com/dryp.cc" target="_blank" class="footer-social-btn" title="Instagram">
+                <i class="fa-brands fa-instagram"></i>
+              </a>
+              <a href="https://maps.app.goo.gl/Dghv7V84S7rzrEKz5" target="_blank" class="footer-social-btn" title="Google Maps">
+                <i class="fa-brands fa-google"></i>
+              </a>
+              <a href="https://wa.me/923108444226" target="_blank" class="footer-social-btn" title="WhatsApp">
+                <i class="fa-brands fa-whatsapp"></i>
+              </a>
+            </div>
+          </div>
+
+          <div class="footer-col">
+            <h4>Slow Brews</h4>
+            <ul class="footer-links">
+              <li><a href="#menu">V60 Single Origin</a></li>
+              <li><a href="#menu">Chemex Precision</a></li>
+              <li><a href="#menu">18-Hour Cold Drip</a></li>
+              <li><a href="#menu">Caramel Iced Latte</a></li>
+              <li><a href="#menu">Spanish Dolce Latte</a></li>
+            </ul>
+          </div>
+
+          <div class="footer-col">
+            <h4>Modern Bites</h4>
+            <ul class="footer-links">
+              <li><a href="#menu">Belgian Fudge Brownie</a></li>
+              <li><a href="#menu">Sea Salt Choco Cookie</a></li>
+              <li><a href="#menu">Lotus Cheesecake</a></li>
+              <li><a href="#menu">Truffle Sourdough Melt</a></li>
+            </ul>
+          </div>
+
+          <div class="footer-col">
+            <h4>Store Information</h4>
+            <ul class="footer-links">
+              <li>918 B Main Farid Town, Sahiwal</li>
+              <li>Daily: 2:00 PM – 1:30 AM</li>
+              <li>Phone: +92 310 8444226</li>
+              <li><a href="https://maps.app.goo.gl/Dghv7V84S7rzrEKz5" target="_blank" style="color: #fbbc04;">Google Maps Profile (4.8 ★)</a></li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="footer-bottom">
+          <div>© 2026 DRYP | Coffee & Craft. All rights reserved. Designed with 3D WebGL Craft.</div>
+          <div>918 B Main, Farid Town Road, Sahiwal, Pakistan</div>
+        </div>
+      </div>
+    </footer>
+
+  </div><!-- /content-wrapper -->
+
+  <!-- Modal: Write a Google Review & Direct Sync -->
+  <div class="modal-backdrop" id="review-modal">
+    <div class="modal-container">
+      <button class="modal-close-btn" id="close-review-modal" aria-label="Close modal">
+        <i class="fa-solid fa-xmark"></i>
+      </button>
+
+      <div class="modal-header">
+        <div class="badge-pill badge-google" style="margin-bottom: 0.75rem;">
+          <i class="fa-brands fa-google"></i> Google Maps Review Portal
+        </div>
+        <h3 class="modal-title">Write a Review for DRYP</h3>
+        <p class="modal-desc">Share your honest feedback. Your review will appear in our live feed and upload directly onto our Google Maps listing.</p>
+      </div>
+
+      <form id="review-form">
+        <div class="form-group">
+          <label class="form-label">Overall Rating</label>
+          <div class="star-rating-picker" id="modal-star-picker">
+            <i class="fa-solid fa-star active" data-val="1"></i>
+            <i class="fa-solid fa-star active" data-val="2"></i>
+            <i class="fa-solid fa-star active" data-val="3"></i>
+            <i class="fa-solid fa-star active" data-val="4"></i>
+            <i class="fa-solid fa-star active" data-val="5"></i>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label class="form-label" for="modal-review-name">Your Full Name</label>
+          <input type="text" id="modal-review-name" class="form-input" placeholder="e.g. Zainab Malik" required>
+        </div>
+
+        <div class="form-group">
+          <label class="form-label">What item did you love?</label>
+          <div class="rating-tag-options">
+            <span class="tag-select-chip active">Signature Caramel Iced Latte</span>
+            <span class="tag-select-chip">V60 Pour Over Slow Brew</span>
+            <span class="tag-select-chip">Belgian Fudge Brownie</span>
+            <span class="tag-select-chip">18-Hour Cold Drip</span>
+            <span class="tag-select-chip">Lotus Biscoff Cheesecake</span>
+            <span class="tag-select-chip">Cozy Late Night Vibe</span>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label class="form-label" for="modal-review-text">Your Experience & Feedback</label>
+          <textarea id="modal-review-text" class="form-textarea" placeholder="Tell us about the coffee flavor, aroma, service, and ambiance..." required></textarea>
+        </div>
+
+        <div class="modal-notice-box">
+          <i class="fa-solid fa-circle-info"></i>
+          <p>
+            <strong>Direct Google Upload:</strong> Clicking "Publish to Google Maps" will save your review here, copy your text, and open DRYP's official Google Maps review dialog where you can submit it to Google in 1 click!
+          </p>
+        </div>
+
+        <div class="modal-actions">
+          <button type="button" class="btn-primary" id="btn-submit-review-google" style="justify-content: center; font-size: 1rem;">
+            <i class="fa-brands fa-google"></i> Publish to Google Maps (Direct Upload)
+          </button>
+          <button type="button" class="btn-secondary" id="btn-submit-review-site" style="justify-content: center;">
+            <i class="fa-solid fa-check"></i> Post to Website Feed Only
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- Order / Bag Slide-out Drawer -->
+  <div class="bag-drawer-backdrop" id="bag-drawer-backdrop"></div>
+  <div class="bag-drawer" id="bag-drawer">
+    <div class="bag-drawer-header">
+      <h3 class="bag-drawer-title"><i class="fa-solid fa-bag-shopping" style="color: var(--primary);"></i> Your Craft Bag</h3>
+      <button class="modal-close-btn" id="close-bag-btn" style="position: static;">
+        <i class="fa-solid fa-xmark"></i>
+      </button>
+    </div>
+
+    <div class="bag-items-list" id="bag-items-list">
+      <!-- Populated dynamically -->
+    </div>
+
+    <div class="bag-drawer-footer">
+      <div class="bag-total-row">
+        <span>Total:</span>
+        <span class="bag-total-val" id="bag-total-val">PKR 0</span>
+      </div>
+      <button class="btn-primary" id="btn-checkout-whatsapp" style="width: 100%; justify-content: center; font-size: 1rem;">
+        <i class="fa-brands fa-whatsapp" style="font-size: 1.25rem;"></i> Send Order via WhatsApp (+92 310 8444226)
+      </button>
+      <p style="font-size: 0.75rem; color: var(--text-dim); text-align: center; margin-top: 0.75rem;">
+        Pick-up / Dine-in at 918 B Main, Farid Town, Sahiwal
+      </p>
+    </div>
+  </div>
+
+  <!-- Scripts -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+  <script src="three-scene.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>
